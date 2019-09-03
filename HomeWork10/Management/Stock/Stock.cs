@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Management.Products;
+using ValidationDll;
 
 namespace Management.Stock
 {
@@ -80,13 +81,15 @@ namespace Management.Stock
 
             int typeSelection = ProductsLibrary.Market.SelectSpecificGoods();
 
-            Console.WriteLine("Select number of product you want to buy");
+            string request = "Select number of product you want to buy.";
 
-            int goodSelection = int.Parse(Console.ReadLine());
+            int goodSelection = Input.Validation(ProductsLibrary.Market._goodsAmount, request);
 
-            Console.WriteLine("How many units do you want to buy?");
+            request = "How many units do you want to buy?";
 
-            int amount = int.Parse(Console.ReadLine());
+            int amountOfGoods = ProductsLibrary.Market.GetGoodsList(goodSelection).Length;
+
+            int amount = Input.Validation(amountOfGoods, request);
 
             Goods selectedGoods = ProductsLibrary.Market.GetGoodsList(typeSelection)[goodSelection];
 
@@ -99,13 +102,15 @@ namespace Management.Stock
 
             int typeSelection = ProductsLibrary.Market.SelectSpecificGoods();
 
-            Console.WriteLine("Select number of product you want to buy");
+            string request = "Select number of product you want to buy.";
 
-            int goodSelection = int.Parse(Console.ReadLine());
+            int goodSelection = Input.Validation(ProductsLibrary.Market._goodsAmount, request);
 
-            Console.WriteLine("How many units do you want to buy?");
+            request = "How many units do you want to sell?";
 
-            int amount = int.Parse(Console.ReadLine());
+            int amountOfGoods = ProductsLibrary.Market.GetGoodsList(goodSelection).Length;
+
+            int amount = Input.Validation(amountOfGoods, request);
 
             Goods selectedGoods = ProductsLibrary.Market.GetGoodsList(typeSelection)[goodSelection];
 
@@ -176,12 +181,16 @@ namespace Management.Stock
 
             if (goodsAreInStock)
             {
-                foreach(KeyValuePair<Goods,int> keyValue in tempStock)
+                foreach (KeyValuePair<Goods, int> keyValue in tempStock)
                 {
                     Console.Write($"Amount: {keyValue.Value}");
                     keyValue.Key.LogProperties();
                     Console.WriteLine("===============================");
                 }
+            }
+            else
+            {
+                Console.WriteLine("The stock is empty!");
             }
 
         }

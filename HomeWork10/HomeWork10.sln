@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork10", "HomeWork10\Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management", "Management\Management.csproj", "{D177675A-9FC4-4089-8986-22C1E17EDC40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidatioDll", "ValidatioDll\ValidatioDll.csproj", "{9A2095AC-DCE9-4DDD-B4FE-09835D446C71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D177675A-9FC4-4089-8986-22C1E17EDC40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D177675A-9FC4-4089-8986-22C1E17EDC40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D177675A-9FC4-4089-8986-22C1E17EDC40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A2095AC-DCE9-4DDD-B4FE-09835D446C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A2095AC-DCE9-4DDD-B4FE-09835D446C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A2095AC-DCE9-4DDD-B4FE-09835D446C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A2095AC-DCE9-4DDD-B4FE-09835D446C71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

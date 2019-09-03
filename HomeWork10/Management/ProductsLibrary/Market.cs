@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Management.Products;
+using ValidationDll;
 
 namespace Management.ProductsLibrary
 {
@@ -49,17 +50,17 @@ namespace Management.ProductsLibrary
         }
         public static void ShowSpecificGoods()
         {
-            Console.WriteLine("Select a number from the list what goods you want to browse:");
+            string request = "Select a number from the list what goods you want to browse:";
 
-            int input = int.Parse(Console.ReadLine());
+            int input = Input.Validation(_goodsAmount, request);
 
             _showGoods[input]();
         }
         public static int SelectSpecificGoods()
         {
-            Console.WriteLine("Select a number from the list what goods you want to browse:");
+            string request = "Select a number from the list what goods you want to browse:";
 
-            int input = int.Parse(Console.ReadLine());
+            int input = Input.Validation(_goodsAmount, request);
 
             _showGoods[input]();
 

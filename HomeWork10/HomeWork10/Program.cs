@@ -16,6 +16,8 @@ namespace HomeWork10
             Stock.BuyGoods();
 
             Stock.ShowStock();
+
+
             Console.ReadKey();
         }
     }

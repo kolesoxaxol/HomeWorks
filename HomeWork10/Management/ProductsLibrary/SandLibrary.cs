@@ -16,7 +16,7 @@ namespace Management.ProductsLibrary
         {
             _sandLibrary.Add(new Sand("SandA", 60, 35, DateTime.Now, _expirationTime, 10));
             _sandLibrary.Add(new Sand("SandB", 70, 35, DateTime.Now, _expirationTime, 8));
-            _sandLibrary.Add(new Sand("SandC", 800, 35, DateTime.Now, _expirationTime, 6));
+            _sandLibrary.Add(new Sand("SandC", 80, 35, DateTime.Now, _expirationTime, 6));
         }
 
         public static Sand[] GetSand()

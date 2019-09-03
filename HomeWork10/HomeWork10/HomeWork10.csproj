@@ -54,6 +54,10 @@
       <Project>{d177675a-9fc4-4089-8986-22c1e17edc40}</Project>
       <Name>Management</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ValidatioDll\ValidatioDll.csproj">
+      <Project>{9a2095ac-dce9-4ddd-b4fe-09835d446c71}</Project>
+      <Name>ValidatioDll</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

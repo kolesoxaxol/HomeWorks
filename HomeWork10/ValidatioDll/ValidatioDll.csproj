@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D177675A-9FC4-4089-8986-22C1E17EDC40}</ProjectGuid>
+    <ProjectGuid>{9A2095AC-DCE9-4DDD-B4FE-09835D446C71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Management</RootNamespace>
-    <AssemblyName>Management</AssemblyName>
+    <RootNamespace>ValidatioDll</RootNamespace>
+    <AssemblyName>ValidatioDll</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,22 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductsLibrary\CementLibrary.cs" />
-    <Compile Include="ProductsLibrary\Market.cs" />
-    <Compile Include="ProductsLibrary\SandLibrary.cs" />
-    <Compile Include="ProductsLibrary\ScrewLibrary.cs" />
-    <Compile Include="Products\Cement.cs" />
-    <Compile Include="Products\Goods.cs" />
-    <Compile Include="Products\Screw.cs" />
-    <Compile Include="Products\Sand.cs" />
+    <Compile Include="Input.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stock\Stock.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ValidatioDll\ValidatioDll.csproj">
-      <Project>{9a2095ac-dce9-4ddd-b4fe-09835d446c71}</Project>
-      <Name>ValidatioDll</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
