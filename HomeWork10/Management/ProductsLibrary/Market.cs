@@ -7,7 +7,7 @@ using Management.Products;
 
 namespace Management.ProductsLibrary
 {
-    public static class GoodsLibrary
+    public static class Market
     {
         private static int _goodsAmount;
 
@@ -17,7 +17,7 @@ namespace Management.ProductsLibrary
 
         private static List<Action> _showGoods;
 
-        static GoodsLibrary()
+        static Market()
         {
             _goodsAmount = 3;
 
@@ -46,12 +46,17 @@ namespace Management.ProductsLibrary
             {
                 Console.WriteLine($"N: {i}, {_namesList[i]}");
             }
+        }
 
+        public static int SelectSpecificGoods()
+        {
             Console.WriteLine("Select a number from the list what goods you want to browse:");
 
             int input = int.Parse(Console.ReadLine());
 
             _showGoods[input]();
+
+            return input;
         }
 
         public static Goods[] GetGoodsList(int index)

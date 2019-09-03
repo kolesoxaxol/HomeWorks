@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProductsLibrary\CementLibrary.cs" />
-    <Compile Include="ProductsLibrary\GoodsLibrary.cs" />
+    <Compile Include="ProductsLibrary\Market.cs" />
     <Compile Include="ProductsLibrary\SandLibrary.cs" />
     <Compile Include="ProductsLibrary\ScrewLibrary.cs" />
     <Compile Include="Products\Cement.cs" />

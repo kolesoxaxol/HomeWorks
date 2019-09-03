@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Management.Products;
+using Management.ProductsLibrary;
+using Management.Stock;
 
 namespace HomeWork10
 {
@@ -10,6 +13,8 @@ namespace HomeWork10
     {
         static void Main(string[] args)
         {
+
+
         }
     }
 }

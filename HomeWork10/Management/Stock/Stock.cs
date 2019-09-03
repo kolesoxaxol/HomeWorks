@@ -18,6 +18,8 @@ namespace Management.Stock
         static Stock()
         {
             _goods = new List<Goods>();
+
+
         }
 
         static void AddGoods(Goods goods, int amount)
@@ -31,6 +33,8 @@ namespace Management.Stock
                     _goods.Add(goods);
                     _currentLoad += goods.Volume;
                 }
+
+                Console.WriteLine($"Success! {amount} products(s) of {goods.Name} were added to the stock.");
             }
             else
             {
@@ -38,9 +42,73 @@ namespace Management.Stock
             }
         }
 
-        public static void BuyGoods()
+        static void RemoveGoods(Goods goods, int amount)
         {
 
+            var tempStock = _goods.GroupBy(x => x)
+                  .Where(g => g.Count() > 1)
+                  .ToDictionary(x => x.Key, y => y.Count());
+
+            bool goodsExist = tempStock[goods] > 0;
+
+            bool enoughGoods = tempStock[goods] - amount > 0;
+
+            if(!goodsExist)
+            {
+                Console.WriteLine("You don't have this goods at Stock.");
+            }
+            else if(!enoughGoods)
+            {
+                Console.WriteLine($"Not enough goods! You've selected {amount} product(s), but there are only {tempStock[goods]} left.");
+            }
+            else
+            {
+                for(int i = 0;i<amount;i++)
+                {
+                    _goods.Remove(goods);
+                    _currentLoad -= goods.Volume;
+                }
+
+                Console.WriteLine($"Success! {amount} products(s) of {goods.Name} were removed from the stock.");
+            }
+        }
+
+        public static void BuyGoods()
+        {
+            ProductsLibrary.Market.ShowGoodsList();
+
+            int typeSelection = ProductsLibrary.Market.SelectSpecificGoods();
+
+            Console.WriteLine("Select number of product you want to buy");
+
+            int goodSelection = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("How many units do you want to buy?");
+
+            int amount = int.Parse(Console.ReadLine());
+
+            Goods selectedGoods = ProductsLibrary.Market.GetGoodsList(typeSelection)[goodSelection];
+
+            AddGoods(selectedGoods, amount);
+        }
+
+        public static void SellGoods()
+        {
+            ProductsLibrary.Market.ShowGoodsList();
+
+            int typeSelection = ProductsLibrary.Market.SelectSpecificGoods();
+
+            Console.WriteLine("Select number of product you want to buy");
+
+            int goodSelection = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("How many units do you want to buy?");
+
+            int amount = int.Parse(Console.ReadLine());
+
+            Goods selectedGoods = ProductsLibrary.Market.GetGoodsList(typeSelection)[goodSelection];
+
+            RemoveGoods(selectedGoods, amount);
         }
 
     }
