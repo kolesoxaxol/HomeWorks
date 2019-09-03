@@ -53,17 +53,17 @@ namespace Management.Stock
 
             bool enoughGoods = tempStock[goods] - amount > 0;
 
-            if(!goodsExist)
+            if (!goodsExist)
             {
                 Console.WriteLine("You don't have this goods at Stock.");
             }
-            else if(!enoughGoods)
+            else if (!enoughGoods)
             {
                 Console.WriteLine($"Not enough goods! You've selected {amount} product(s), but there are only {tempStock[goods]} left.");
             }
             else
             {
-                for(int i = 0;i<amount;i++)
+                for (int i = 0; i < amount; i++)
                 {
                     _goods.Remove(goods);
                     _currentLoad -= goods.Volume;
@@ -111,5 +111,76 @@ namespace Management.Stock
             RemoveGoods(selectedGoods, amount);
         }
 
+
+        public static List<Goods> ExpiredGoods()
+        {
+            List<Goods> expiredGoods = new List<Goods>();
+            foreach (Goods goods in _goods)
+            {
+                DateTime expirationDate = goods.DateOfProduction + goods.ExpirationTime;
+
+                DateTime today = DateTime.Now;
+
+                bool expired = expirationDate < today;
+
+                if (expired)
+                {
+                    expiredGoods.Add(goods);
+                }
+            }
+
+            int amountOfExpired = expiredGoods.Count;
+
+            Console.WriteLine($"There is(are) {amountOfExpired} expired good(s).");
+
+            bool anyExpired = amountOfExpired > 0;
+
+            if (anyExpired)
+            {
+                Console.WriteLine($"List of expired goods:");
+
+                foreach (Goods goods in expiredGoods)
+                {
+                    DateTime expirationDate = goods.DateOfProduction + goods.ExpirationTime;
+
+                    Console.WriteLine($"Name: {goods.Name}, Price: {goods.Price}, Volume: {goods.Volume}, Expiration date: {expirationDate}");
+                }
+            }
+
+            return expiredGoods;
+        }
+
+        public static void RemoveExpiredGoods()
+        {
+            List<Goods> expiredGoods = ExpiredGoods();
+
+            if (expiredGoods != null)
+            {
+                foreach (Goods goods in expiredGoods)
+                {
+                    _goods.Remove(goods);
+                    _currentLoad -= goods.Volume;
+                }
+            }
+        }
+
+        public static void ShowStock()
+        {
+            var sortedGoods = _goods.GroupBy(x => x)
+              .Where(g => g.Count() > 1)
+              .Select(y => y.Key)
+              .ToList();
+
+            bool goodsAreInStock = sortedGoods.Count > 0;
+
+            if (goodsAreInStock)
+            {
+                foreach (Goods goods in sortedGoods)
+                {
+                    Console.WriteLine("N");
+                }
+            }
+
+        }
     }
 }

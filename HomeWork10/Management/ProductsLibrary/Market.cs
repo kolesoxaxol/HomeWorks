@@ -47,7 +47,14 @@ namespace Management.ProductsLibrary
                 Console.WriteLine($"N: {i}, {_namesList[i]}");
             }
         }
+        public static void ShowSpecificGoods()
+        {
+            Console.WriteLine("Select a number from the list what goods you want to browse:");
 
+            int input = int.Parse(Console.ReadLine());
+
+            _showGoods[input]();
+        }
         public static int SelectSpecificGoods()
         {
             Console.WriteLine("Select a number from the list what goods you want to browse:");
@@ -63,5 +70,6 @@ namespace Management.ProductsLibrary
         {
             return _goodsList[index];
         }
+
     }
 }
