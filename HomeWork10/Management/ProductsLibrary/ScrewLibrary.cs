@@ -7,23 +7,23 @@ using Management.Products;
 
 namespace Management.ProductsLibrary
 {
-    public class ScrewLibrary
+    public static class ScrewLibrary
     {
-        List<Screw> _screwLibrary = new List<Screw>();
+        private static List<Screw> _screwLibrary = new List<Screw>();
 
-        TimeSpan expirationTime = new TimeSpan(1000, 0, 0, 0);
-        internal ScrewLibrary()
+        private static TimeSpan _expirationTime = new TimeSpan(1000, 0, 0, 0);
+        static ScrewLibrary()
         {
-            _screwLibrary.Add(new Screw("ScrewA", 10, 5, DateTime.Now, expirationTime, "Cross"));
-            _screwLibrary.Add(new Screw("ScrewB", 25, 10, DateTime.Now, expirationTime, "Self-tapping screw"));
+            _screwLibrary.Add(new Screw("ScrewA", 10, 5, DateTime.Now, _expirationTime, "Cross"));
+            _screwLibrary.Add(new Screw("ScrewB", 25, 10, DateTime.Now, _expirationTime, "Self-tapping screw"));
         }
 
-        public Screw[] GetScrew()
+        public static Screw[] GetScrew()
         {
             return _screwLibrary.ToArray();
         }
 
-        public void ShowScrew()
+        public static void ShowScrew()
         {
             for (int i = 0; i < _screwLibrary.Count; i++)
             {

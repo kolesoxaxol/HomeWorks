@@ -22,13 +22,14 @@ namespace Management.Stock
 
         static void AddGoods(Goods goods, int amount)
         {
-            bool enoughSpace = _currentLoad + amount*goods.Volume <= _capacity;
+            bool enoughSpace = _currentLoad + amount * goods.Volume <= _capacity;
 
-            if(enoughSpace)
+            if (enoughSpace)
             {
-                for (int i = 0; i<amount;i++)
+                for (int i = 0; i < amount; i++)
                 {
                     _goods.Add(goods);
+                    _currentLoad += goods.Volume;
                 }
             }
             else

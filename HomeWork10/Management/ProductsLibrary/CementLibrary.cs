@@ -7,24 +7,24 @@ using Management.Products;
 
 namespace Management.ProductsLibrary
 {
-    public class CementLibrary
+    public static class CementLibrary
     {
-        List<Cement> _cementLibrary = new List<Cement>();
+        private static List<Cement> _cementLibrary = new List<Cement>();
 
-        TimeSpan expirationTime = new TimeSpan(50, 0, 0, 0);
-        internal CementLibrary()
+        private static TimeSpan _expirationTime = new TimeSpan(50, 0, 0, 0);
+        static CementLibrary()
         {
-            _cementLibrary.Add(new Cement("CementA", 100, 35, DateTime.Now, expirationTime, 1.5m));
-            _cementLibrary.Add(new Cement("CementB", 110, 33, DateTime.Now, expirationTime, 2m));
-            _cementLibrary.Add(new Cement("CementC", 120, 31, DateTime.Now, expirationTime, 2.3m));
+            _cementLibrary.Add(new Cement("CementA", 100, 35, DateTime.Now, _expirationTime, 1.5m));
+            _cementLibrary.Add(new Cement("CementB", 110, 33, DateTime.Now, _expirationTime, 2m));
+            _cementLibrary.Add(new Cement("CementC", 120, 31, DateTime.Now, _expirationTime, 2.3m));
         }
 
-        public Cement[] GetSand()
+        public static Cement[] GetCement()
         {
             return _cementLibrary.ToArray();
         }
 
-        public void ShowCement()
+        public static void ShowCement()
         {
             for(int i = 0; i< _cementLibrary.Count;i++)
             {

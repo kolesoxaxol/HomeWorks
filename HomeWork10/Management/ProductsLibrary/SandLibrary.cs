@@ -7,24 +7,24 @@ using Management.Products;
 
 namespace Management.ProductsLibrary
 {
-    public class SandLibrary
+    public static class SandLibrary
     {
-         List<Sand> _sandLibrary = new List<Sand>();
+        private static List<Sand> _sandLibrary = new List<Sand>();
 
-        TimeSpan expirationTime = new TimeSpan(10, 0, 0, 0);
-        internal SandLibrary()
+        private static TimeSpan _expirationTime = new TimeSpan(10, 0, 0, 0);
+        static SandLibrary()
         {
-            _sandLibrary.Add(new Sand("SandA", 60, 35, DateTime.Now, expirationTime, 10));
-            _sandLibrary.Add(new Sand("SandB", 70, 35, DateTime.Now, expirationTime, 8));
-            _sandLibrary.Add(new Sand("SandC", 800, 35, DateTime.Now, expirationTime, 6));
+            _sandLibrary.Add(new Sand("SandA", 60, 35, DateTime.Now, _expirationTime, 10));
+            _sandLibrary.Add(new Sand("SandB", 70, 35, DateTime.Now, _expirationTime, 8));
+            _sandLibrary.Add(new Sand("SandC", 800, 35, DateTime.Now, _expirationTime, 6));
         }
 
-        public Sand[] GetSand()
+        public static Sand[] GetSand()
         {
             return _sandLibrary.ToArray();
         }
 
-        public void ShowSand()
+        public static void ShowSand()
         {
             for (int i = 0; i < _sandLibrary.Count; i++)
             {
