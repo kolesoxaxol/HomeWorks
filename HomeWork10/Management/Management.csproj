@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProductsLibrary\CementLibrary.cs" />
+    <Compile Include="ProductsLibrary\SandLibrary.cs" />
+    <Compile Include="ProductsLibrary\ScrewLibrary.cs" />
     <Compile Include="Products\Cement.cs" />
     <Compile Include="Products\Goods.cs" />
     <Compile Include="Products\Screw.cs" />
