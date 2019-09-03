@@ -28,7 +28,8 @@ namespace Management.ProductsLibrary
         {
             for (int i = 0; i < _sandLibrary.Count; i++)
             {
-                Console.WriteLine($"N: {i}, Model: {_sandLibrary[i].Name}, Price: {_sandLibrary[i].Price}, Volume per unit: {_sandLibrary[i].Volume}, Grain size: {_sandLibrary[i].GrainSize}.");
+                Console.Write($"\nN: {i}\n");
+                _sandLibrary[i].LogProperties();
             }
         }
 

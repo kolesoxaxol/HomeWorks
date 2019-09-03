@@ -13,8 +13,10 @@ namespace HomeWork10
     {
         static void Main(string[] args)
         {
+            Stock.BuyGoods();
 
-
+            Stock.ShowStock();
+            Console.ReadKey();
         }
     }
 }

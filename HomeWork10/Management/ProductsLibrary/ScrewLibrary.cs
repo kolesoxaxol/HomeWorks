@@ -27,7 +27,8 @@ namespace Management.ProductsLibrary
         {
             for (int i = 0; i < _screwLibrary.Count; i++)
             {
-                Console.WriteLine($"N: {i}, Model: {_screwLibrary[i].Name}, Price: {_screwLibrary[i].Price}, Volume per unit: {_screwLibrary[i].Volume}, Screw type: {_screwLibrary[i].ScrewType}.");
+                Console.Write($"\nN: {i}\n");
+                _screwLibrary[i].LogProperties();
             }
         }
     }

@@ -28,7 +28,8 @@ namespace Management.ProductsLibrary
         {
             for(int i = 0; i< _cementLibrary.Count;i++)
             {
-                Console.WriteLine($"N: {i}, Model: {_cementLibrary[i].Name}, Price: {_cementLibrary[i].Price}, Volume per unit: {_cementLibrary[i].Volume}, Bulk density: {_cementLibrary[i].BulkDensity}.");
+                Console.Write($"\nN: {i}\n");
+                _cementLibrary[i].LogProperties();
             }
         }
 

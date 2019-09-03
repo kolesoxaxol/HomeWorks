@@ -9,9 +9,9 @@ namespace Management.ProductsLibrary
 {
     public static class Market
     {
-        private static int _goodsAmount;
+        internal static int _goodsAmount;
 
-        private static Dictionary<int, string> _namesList;
+        internal static Dictionary<int, string> _namesList;
 
         private static Dictionary<int, Goods[]> _goodsList;
 
@@ -27,13 +27,13 @@ namespace Management.ProductsLibrary
 
             _showGoods = new List<Action>();
 
-            _namesList.Add(1, "Sand");
-            _namesList.Add(2, "Cement");
-            _namesList.Add(3, "Screw");
+            _namesList.Add(0, "Sand");
+            _namesList.Add(1, "Cement");
+            _namesList.Add(2, "Screw");
 
-            _goodsList.Add(1, SandLibrary.GetSand() );
-            _goodsList.Add(2, CementLibrary.GetCement() );
-            _goodsList.Add(3, ScrewLibrary.GetScrew() );
+            _goodsList.Add(0, SandLibrary.GetSand() );
+            _goodsList.Add(1, CementLibrary.GetCement() );
+            _goodsList.Add(2, ScrewLibrary.GetScrew() );
 
             _showGoods.Add( () => SandLibrary.ShowSand() );
             _showGoods.Add( () => CementLibrary.ShowCement() );
@@ -42,7 +42,7 @@ namespace Management.ProductsLibrary
 
         public static void ShowGoodsList()
         {
-            for (int i = 1; i <= _goodsAmount; i++)
+            for (int i = 0; i < _goodsAmount; i++)
             {
                 Console.WriteLine($"N: {i}, {_namesList[i]}");
             }

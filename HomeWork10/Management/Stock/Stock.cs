@@ -7,6 +7,7 @@ using Management.Products;
 
 namespace Management.Stock
 {
+
     public static class Stock
     {
         static List<Goods> _goods;
@@ -15,10 +16,10 @@ namespace Management.Stock
 
         static int _currentLoad = 0;
 
+
         static Stock()
         {
             _goods = new List<Goods>();
-
 
         }
 
@@ -164,20 +165,22 @@ namespace Management.Stock
             }
         }
 
+
         public static void ShowStock()
         {
-            var sortedGoods = _goods.GroupBy(x => x)
-              .Where(g => g.Count() > 1)
-              .Select(y => y.Key)
-              .ToList();
+            var tempStock = _goods.GroupBy(x => x)
+                  .Where(g => g.Count() > 1)
+                  .ToDictionary(x => x.Key, y => y.Count());
 
-            bool goodsAreInStock = sortedGoods.Count > 0;
+            bool goodsAreInStock = tempStock.Count > 0;
 
             if (goodsAreInStock)
             {
-                foreach (Goods goods in sortedGoods)
+                foreach(KeyValuePair<Goods,int> keyValue in tempStock)
                 {
-                    Console.WriteLine("N");
+                    Console.Write($"Amount: {keyValue.Value}");
+                    keyValue.Key.LogProperties();
+                    Console.WriteLine("===============================");
                 }
             }
 

@@ -19,5 +19,11 @@ namespace Management.Products
         }
 
         public decimal BulkDensity { get; internal set; }
+
+        public override void LogProperties()
+        {
+            Console.Write("\nModel: {0}\nPrice: {1}\nVolume: {2}\nDateOfProduction: {3}\nExpirationTime: {4} DD.HH:MM:SS\nBulkDensity: {5}\n",
+                        this.Name, this.Price, this.Volume, this.DateOfProduction, this.ExpirationTime, this.BulkDensity);
+        }
     }
 }
