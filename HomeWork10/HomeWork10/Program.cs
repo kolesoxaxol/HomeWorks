@@ -19,15 +19,18 @@ namespace HomeWork10
             
             while(true)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("===========================================");
                 Console.WriteLine("1. Show items at your stock.");
                 Console.WriteLine("2. Show items at the shop.");
                 Console.WriteLine("3. Buy items at the shop.");
                 Console.WriteLine("4. Sell items from the stock.");
                 Console.WriteLine("5. Check for expired goods at the stock.");
-                Console.WriteLine("6. Clean console.");
+                Console.WriteLine("5. Clear expired goods from the stock.");
+                Console.WriteLine("7. Clean console.");
                 Console.WriteLine("===========================================");
                 Console.WriteLine("0. Exit.");
+                Console.ResetColor();
 
                 int menuSize = 6;
 
@@ -62,6 +65,10 @@ namespace HomeWork10
                         {
                             Stock.ExpiredGoods();
 
+                            break;
+                        }
+                    case 6:
+                        {
                             request = "Do you want to clear stock from Expired goods?";
                             int yesAnswer = 1;
 
@@ -71,10 +78,9 @@ namespace HomeWork10
                             {
                                 Stock.RemoveExpiredGoods();
                             }
-
                             break;
                         }
-                    case 6:
+                    case 7:
                         {
                             Console.Clear();
                             break;

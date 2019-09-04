@@ -24,6 +24,8 @@ namespace Management.Stock
 
         }
 
+        //Method to add one specific good.
+
         static void AddGoods(Goods goods, int amount)
         {
             bool enoughSpace = _currentLoad + amount * goods.Volume <= _capacity;
@@ -44,12 +46,10 @@ namespace Management.Stock
             }
         }
 
+        //Method to remove one specific good.
+
         static void RemoveGoods(Goods goods, int amount)
         {
-
-            var tempStock = _goods.GroupBy(x => x)
-                  .Where(g => g.Count() > 1)
-                  .ToDictionary(x => x.Key, y => y.Count());
 
             var stockNoDuplicates = _goods.Distinct().ToList();
 
@@ -71,20 +71,26 @@ namespace Management.Stock
             }
         }
 
+        //Buying goods.
+
         public static void BuyGoods()
         {
+            //getting names of goods classes (Sand, Screw, etc.) from the market
             ProductsLibrary.Market.ShowGoodsList();
 
+            //showing all avilable products of specific class
             int typeSelection = ProductsLibrary.Market.SelectSpecificGoods();
 
             string request = "Select number of product you want to buy.";
 
+            //selection of one specific product
             int goodSelection = Input.Validation(ProductsLibrary.Market._goodsAmount, request);
 
             request = "How many units do you want to buy?";
 
             int amountCanBuy = Int32.MaxValue;
 
+            //selecting amount of product
             int amount = Input.Validation(amountCanBuy, request);
 
             Goods selectedGoods = ProductsLibrary.Market.GetGoodsList(typeSelection)[goodSelection];
@@ -94,11 +100,16 @@ namespace Management.Stock
 
         public static void SellGoods()
         {
+
             ShowStock();
+
+            //getting current stock stance and amount of duplicates per each good
 
             int[] duplicates;
 
             Goods[] goodsList = GetStock(out duplicates);
+
+            //check for empty stock
 
             bool stockIsEmpty = goodsList == null;
 
@@ -126,6 +137,8 @@ namespace Management.Stock
         public static List<Goods> ExpiredGoods()
         {
             List<Goods> expiredGoods = new List<Goods>();
+
+            //for each element in stock I check it's own expiration date and how long it takes till it expires. After that I compare results with current date.
 
             foreach (Goods goods in _goods)
             {
@@ -179,6 +192,9 @@ namespace Management.Stock
 
         public static void ShowStock()
         {
+            //due to the fact I work with a List<Goods>, i may have duplicate items in the stock.
+            //To solve it I build Dictionary of duplicates and List of all items without duplicates
+
             var duplicatesStock = _goods.GroupBy(x => x)
                   .Where(g => g.Count() > 1)
                   .ToDictionary(x => x.Key, y => y.Count());
@@ -197,11 +213,15 @@ namespace Management.Stock
 
                     if(goodHasDuplicate)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write($"N: {indexCount}, Amount: {duplicatesStock[goods]}");
+                        Console.ResetColor();
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write($"N: {indexCount}, Amount: {1}");
+                        Console.ResetColor();
                     }
 
                     goods.LogProperties();
@@ -217,6 +237,7 @@ namespace Management.Stock
 
         }
 
+        //Simillar as with show stock: I have to deal with duplicates and I've selected the same method.
         public static Goods[] GetStock(out int[] duplicates)
         {
             var duplicatesStock = _goods.GroupBy(x => x)
