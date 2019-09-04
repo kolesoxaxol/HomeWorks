@@ -11,11 +11,11 @@ namespace Management.Stock
 
     public static class Stock
     {
-        static List<Goods> _goods;
+        private static List<Goods> _goods;
 
-        static int _capacity = 1000;
+        private static int _capacity = 1000;
 
-        static int _currentLoad = 0;
+        private static int _currentLoad = 0;
 
 
         static Stock()
@@ -51,17 +51,13 @@ namespace Management.Stock
                   .Where(g => g.Count() > 1)
                   .ToDictionary(x => x.Key, y => y.Count());
 
-            bool goodsExist = tempStock[goods] > 0;
+            var stockNoDuplicates = _goods.Distinct().ToList();
 
-            bool enoughGoods = tempStock[goods] - amount > 0;
+            bool goodsExist = stockNoDuplicates.Count > 0;
 
             if (!goodsExist)
             {
                 Console.WriteLine("You don't have this goods at Stock.");
-            }
-            else if (!enoughGoods)
-            {
-                Console.WriteLine($"Not enough goods! You've selected {amount} product(s), but there are only {tempStock[goods]} left.");
             }
             else
             {
@@ -87,9 +83,9 @@ namespace Management.Stock
 
             request = "How many units do you want to buy?";
 
-            int amountOfGoods = ProductsLibrary.Market.GetGoodsList(goodSelection).Length;
+            int amountCanBuy = Int32.MaxValue;
 
-            int amount = Input.Validation(amountOfGoods, request);
+            int amount = Input.Validation(amountCanBuy, request);
 
             Goods selectedGoods = ProductsLibrary.Market.GetGoodsList(typeSelection)[goodSelection];
 
@@ -98,29 +94,39 @@ namespace Management.Stock
 
         public static void SellGoods()
         {
-            ProductsLibrary.Market.ShowGoodsList();
+            ShowStock();
 
-            int typeSelection = ProductsLibrary.Market.SelectSpecificGoods();
+            int[] duplicates;
 
-            string request = "Select number of product you want to buy.";
+            Goods[] goodsList = GetStock(out duplicates);
 
-            int goodSelection = Input.Validation(ProductsLibrary.Market._goodsAmount, request);
+            bool stockIsEmpty = goodsList == null;
 
-            request = "How many units do you want to sell?";
+            if(!stockIsEmpty)
+            {
 
-            int amountOfGoods = ProductsLibrary.Market.GetGoodsList(goodSelection).Length;
+                string request = "Select number of product you want to sell.";
 
-            int amount = Input.Validation(amountOfGoods, request);
+                int goodSelection = Input.Validation(goodsList.Length, request);
 
-            Goods selectedGoods = ProductsLibrary.Market.GetGoodsList(typeSelection)[goodSelection];
+                request = "How many units do you want to sell?";
 
-            RemoveGoods(selectedGoods, amount);
+                int amountCanBuy = duplicates[goodSelection];
+
+                int amount = Input.Validation(amountCanBuy, request);
+
+                Goods selectedGoods = goodsList[goodSelection];
+
+                RemoveGoods(selectedGoods, amount);
+            }
+
         }
 
 
         public static List<Goods> ExpiredGoods()
         {
             List<Goods> expiredGoods = new List<Goods>();
+
             foreach (Goods goods in _goods)
             {
                 DateTime expirationDate = goods.DateOfProduction + goods.ExpirationTime;
@@ -173,24 +179,86 @@ namespace Management.Stock
 
         public static void ShowStock()
         {
-            var tempStock = _goods.GroupBy(x => x)
+            var duplicatesStock = _goods.GroupBy(x => x)
                   .Where(g => g.Count() > 1)
                   .ToDictionary(x => x.Key, y => y.Count());
 
-            bool goodsAreInStock = tempStock.Count > 0;
+            var stockNoDuplicates = _goods.Distinct().ToList();
+
+            bool goodsAreInStock = stockNoDuplicates.Count > 0;
+
+            int indexCount = 0;
 
             if (goodsAreInStock)
             {
-                foreach (KeyValuePair<Goods, int> keyValue in tempStock)
+                foreach(Goods goods in stockNoDuplicates)
                 {
-                    Console.Write($"Amount: {keyValue.Value}");
-                    keyValue.Key.LogProperties();
-                    Console.WriteLine("===============================");
+                    bool goodHasDuplicate = duplicatesStock.Any(key=>key.Key.Equals(goods));
+
+                    if(goodHasDuplicate)
+                    {
+                        Console.Write($"N: {indexCount}, Amount: {duplicatesStock[goods]}");
+                    }
+                    else
+                    {
+                        Console.Write($"N: {indexCount}, Amount: {1}");
+                    }
+
+                    goods.LogProperties();
+                    Console.WriteLine("======================");
+
+                    indexCount++;
                 }
             }
             else
             {
-                Console.WriteLine("The stock is empty!");
+                Console.WriteLine("\nThe stock is empty!\n");
+            }
+
+        }
+
+        public static Goods[] GetStock(out int[] duplicates)
+        {
+            var duplicatesStock = _goods.GroupBy(x => x)
+                  .Where(g => g.Count() > 1)
+                  .ToDictionary(x => x.Key, y => y.Count());
+
+            var stockNoDuplicates = _goods.Distinct().ToList();
+
+            bool goodsAreInStock = stockNoDuplicates.Count > 0;
+
+            if (goodsAreInStock)
+            {
+                int amountOfGoods = stockNoDuplicates.Count;
+
+                Goods[] tempStock = new Goods[amountOfGoods];
+                var dupl = new int[amountOfGoods];
+
+                for(int i = 0;i< amountOfGoods;i++)
+                {
+                    tempStock[i] = stockNoDuplicates[i];
+
+                    bool goodHasDuplicate = duplicatesStock.Any(key => key.Key.Equals(stockNoDuplicates[i]));
+
+                    if(goodHasDuplicate)
+                    {
+                        dupl[i] = duplicatesStock[stockNoDuplicates[i]];
+                    }
+                    else
+                    {
+                        dupl[i] = 1;
+                    }
+
+
+                    
+                }
+                duplicates = dupl;
+                return tempStock.ToArray();
+            }
+            else
+            {
+                duplicates = null;
+                return null;
             }
 
         }

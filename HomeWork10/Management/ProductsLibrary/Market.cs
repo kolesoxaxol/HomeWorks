@@ -12,7 +12,7 @@ namespace Management.ProductsLibrary
     {
         internal static int _goodsAmount;
 
-        internal static Dictionary<int, string> _namesList;
+        private static Dictionary<int, string> _namesList;
 
         private static Dictionary<int, Goods[]> _goodsList;
 
@@ -52,7 +52,7 @@ namespace Management.ProductsLibrary
         {
             string request = "Select a number from the list what goods you want to browse:";
 
-            int input = Input.Validation(_goodsAmount, request);
+            int input = Input.Validation(_goodsAmount-1, request);
 
             _showGoods[input]();
         }
@@ -60,7 +60,7 @@ namespace Management.ProductsLibrary
         {
             string request = "Select a number from the list what goods you want to browse:";
 
-            int input = Input.Validation(_goodsAmount, request);
+            int input = Input.Validation(_goodsAmount-1, request);
 
             _showGoods[input]();
 
