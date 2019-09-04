@@ -22,20 +22,22 @@ namespace Management.ProductsLibrary
             _cementLibrary.Add(new Cement("CementC", 120, 31, DateTime.Now, _expirationTime, 2.3m));
         }
 
-        public static Cement[] GetCement()
+        public static Cement[] GetGoods()
         {
             return _cementLibrary.ToArray();
         }
 
-        public static void ShowCement()
+        public static void ShowGoods()
         {
             for(int i = 0; i< _cementLibrary.Count;i++)
             {
+
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write($"\nN: {i}\n");
                 Console.ResetColor();
 
                 _cementLibrary[i].LogProperties();
+                Console.WriteLine("----------------------------");
             }
         }
 

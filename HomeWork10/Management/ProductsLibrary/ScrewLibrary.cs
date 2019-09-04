@@ -20,20 +20,22 @@ namespace Management.ProductsLibrary
             _screwLibrary.Add(new Screw("ScrewB", 25, 10, DateTime.Now, _expirationTime, "Self-tapping screw"));
         }
 
-        public static Screw[] GetScrew()
+        public static Screw[] GetGoods()
         {
             return _screwLibrary.ToArray();
         }
 
-        public static void ShowScrew()
+        public static void ShowGoods()
         {
             for (int i = 0; i < _screwLibrary.Count; i++)
             {
+
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write($"\nN: {i}\n");
                 Console.ResetColor();
 
                 _screwLibrary[i].LogProperties();
+                Console.WriteLine("----------------------------");
             }
         }
     }

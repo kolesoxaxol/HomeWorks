@@ -37,13 +37,13 @@ namespace Management.ProductsLibrary
             _namesList.Add(1, "Cement");
             _namesList.Add(2, "Screw");
 
-            _goodsList.Add(0, SandLibrary.GetSand() );
-            _goodsList.Add(1, CementLibrary.GetCement() );
-            _goodsList.Add(2, ScrewLibrary.GetScrew() );
+            _goodsList.Add(0, SandLibrary.GetGoods() );
+            _goodsList.Add(1, CementLibrary.GetGoods() );
+            _goodsList.Add(2, ScrewLibrary.GetGoods() );
 
-            _showGoods.Add( () => SandLibrary.ShowSand() );
-            _showGoods.Add( () => CementLibrary.ShowCement() );
-            _showGoods.Add( () => ScrewLibrary.ShowScrew() );
+            _showGoods.Add( () => SandLibrary.ShowGoods() );
+            _showGoods.Add( () => CementLibrary.ShowGoods() );
+            _showGoods.Add( () => ScrewLibrary.ShowGoods() );
         }
 
         //Shows all goods types.
@@ -62,7 +62,12 @@ namespace Management.ProductsLibrary
 
             int input = Input.Validation(_goodsAmount-1, request);
 
+            Console.WriteLine("----------------------------");
+
             _showGoods[input]();
+
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey();
         }
 
         //Almost the same function, but it also helps to return index of specific type of goods that will be used in a programm
@@ -71,6 +76,8 @@ namespace Management.ProductsLibrary
             string request = "Select a number from the list what goods you want to browse:";
 
             int input = Input.Validation(_goodsAmount-1, request);
+
+            Console.WriteLine("----------------------------");
 
             _showGoods[input]();
 

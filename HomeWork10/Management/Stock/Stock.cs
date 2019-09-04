@@ -38,11 +38,15 @@ namespace Management.Stock
                     _currentLoad += goods.Volume;
                 }
 
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Success! {amount} products(s) of {goods.Name} were added to the stock.");
+                Console.ResetColor();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine($"Not enough space to buy {amount} product(s)! Current load is {_currentLoad}. Capacity is {_capacity}");
+                Console.ResetColor();
             }
         }
 
@@ -57,7 +61,9 @@ namespace Management.Stock
 
             if (!goodsExist)
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("You don't have this goods at Stock.");
+                Console.ResetColor();
             }
             else
             {
@@ -67,7 +73,10 @@ namespace Management.Stock
                     _currentLoad -= goods.Volume;
                 }
 
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Success! {amount} products(s) of {goods.Name} were removed from the stock.");
+                Console.ResetColor();
+
             }
         }
 
@@ -229,10 +238,14 @@ namespace Management.Stock
 
                     indexCount++;
                 }
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("\nThe stock is empty!\n");
+                Console.ResetColor();
             }
 
         }

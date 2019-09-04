@@ -32,7 +32,7 @@ namespace HomeWork10
                 Console.WriteLine("0. Exit.");
                 Console.ResetColor();
 
-                int menuSize = 6;
+                int menuSize = 7;
 
                 string request = "Please, select one item from the menu";
 

@@ -21,20 +21,22 @@ namespace Management.ProductsLibrary
             _sandLibrary.Add(new Sand("SandC", 80, 35, DateTime.Now, _expirationTime, 6));
         }
 
-        public static Sand[] GetSand()
+        public static Sand[] GetGoods()
         {
             return _sandLibrary.ToArray();
         }
 
-        public static void ShowSand()
+        public static void ShowGoods()
         {
             for (int i = 0; i < _sandLibrary.Count; i++)
             {
+
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write($"\nN: {i}\n");
                 Console.ResetColor();
 
                 _sandLibrary[i].LogProperties();
+                Console.WriteLine("----------------------------");
             }
         }
 
