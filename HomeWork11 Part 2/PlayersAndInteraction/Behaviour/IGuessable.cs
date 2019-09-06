@@ -8,10 +8,10 @@ namespace PlayersAndInteraction.Behaviour
 {
     interface IGuessable
     {
+        int BestGuess { get; set; }
+
         int MakeGuess(int answer, List<int> otherGuesses);
 
         void GenerateList(int minValue, int MaxValue);
-
-        int FindBestGuess(int answer);
     }
 }

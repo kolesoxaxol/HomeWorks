@@ -10,10 +10,6 @@ namespace PlayersAndInteraction.Behaviour
     {
         public int MakeGuess(int answer, List<int> otherGuesses)
         {
-            foreach (int guesses in otherGuesses)
-            {
-                this._numbers.Remove(guesses);
-            }
 
             int count = this._numbers.Count;
 
@@ -21,7 +17,19 @@ namespace PlayersAndInteraction.Behaviour
 
             this._lastGuess = this._numbers[indexGuess];
 
-            this.AllGuesses.Add(this._lastGuess);
+            bool correctAnswer = this._lastGuess == answer;
+
+            if (!correctAnswer)
+            {
+                _numbers.Remove(this._lastGuess);
+            }
+
+            bool betterGuess = Math.Abs(answer - this._lastGuess) < BestGuess;
+
+            if (betterGuess)
+            {
+                this.BestGuess = Math.Abs(answer - this._lastGuess);
+            }
 
             return this._lastGuess;
 

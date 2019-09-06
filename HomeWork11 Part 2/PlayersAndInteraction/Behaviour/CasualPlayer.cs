@@ -19,7 +19,12 @@ namespace PlayersAndInteraction.Behaviour
 
             this._lastGuess = this._numbers[indexGuess];
 
-            this.AllGuesses.Add(this._lastGuess);
+            bool betterGuess = Math.Abs(answer - this._lastGuess) < this.BestGuess;
+
+            if(betterGuess)
+            {
+                this.BestGuess = Math.Abs(answer - this._lastGuess);
+            }
 
             return this._lastGuess;
         }

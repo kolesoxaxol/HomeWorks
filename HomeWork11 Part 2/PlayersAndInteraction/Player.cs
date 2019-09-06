@@ -9,6 +9,7 @@ namespace PlayersAndInteraction
 {
     class Player
     {
+        
         public string Name { get; private set; }
 
         public IGuessable Behaviour {get;set;}

@@ -12,13 +12,14 @@ namespace PlayersAndInteraction.Behaviour
 
         public int _lastGuess;
 
-        public List<int> AllGuesses { get; set; }
-
         public BasePlayer()
         {
-            this.AllGuesses = new List<int>();
             _lastGuess = Int32.MinValue;
+            this.BestGuess = Int32.MaxValue;
         }
+
+        public int BestGuess { get; set; }
+
         public void GenerateList(int minValue, int maxValue)
         {
             List<int> tempList = new List<int>();
@@ -31,23 +32,5 @@ namespace PlayersAndInteraction.Behaviour
             _numbers = tempList;
         }
 
-        public int FindBestGuess(int answer)
-        {
-            int bestGuess = Math.Abs(this.AllGuesses[0] - answer);
-
-            foreach (int guess in this.AllGuesses)
-            {
-                int difference = Math.Abs(guess - answer);
-
-                bool betterResult = difference < bestGuess;
-
-                if (betterResult)
-                {
-                    bestGuess = difference;
-                }
-            }
-
-            return bestGuess;
-        }
     }
 }

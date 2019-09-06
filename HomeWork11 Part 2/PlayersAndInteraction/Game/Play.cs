@@ -50,6 +50,22 @@ namespace PlayersAndInteraction.Game
 
         }
 
+        private static void AddToGuessList(int guess)
+        {
+            bool guessListFull = _allGuesses.Count == _amountOfPlayers;
+
+            if(guessListFull)
+            {
+                _allGuesses.Remove(_allGuesses[0]);
+
+                _allGuesses.Add(guess);
+            }
+            else
+            {
+                _allGuesses.Add(guess);
+            }
+        }
+
         public static void CreateGame()
         {
             Console.WriteLine("Select amount of players from 2 to 8.");
@@ -106,7 +122,7 @@ namespace PlayersAndInteraction.Game
                 {
                     int guess = player.Behaviour.MakeGuess(_winNumber, _allGuesses);
 
-                    _allGuesses.Add(guess);
+                    AddToGuessList(guess);
 
                     bool win = guess == _winNumber;
                     if (win)
@@ -128,7 +144,7 @@ namespace PlayersAndInteraction.Game
                 List<int> allBestGuess = new List<int>();
                 foreach (Player player in _listOfPlayers)
                 {
-                    int bestGuess = player.Behaviour.FindBestGuess(_winNumber);
+                    int bestGuess = player.Behaviour.BestGuess;
                     allBestGuess.Add(bestGuess);
                 }
 

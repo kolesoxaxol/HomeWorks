@@ -21,9 +21,14 @@ namespace PlayersAndInteraction.Behaviour
             {
                 this._lastGuess = _numbers[0];
 
-                this.AllGuesses.Add(this._lastGuess);
-
                 _numbers.Remove(_numbers[0]);
+            }
+
+            bool betterGuess = Math.Abs(answer - this._lastGuess) < BestGuess;
+
+            if (betterGuess)
+            {
+                this.BestGuess = Math.Abs(answer - this._lastGuess);
             }
             return this._lastGuess;
         }
