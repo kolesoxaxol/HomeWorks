@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace RandomGenerator
 {
     public class RandomGenerator
-
     {
         private static readonly Random random = new Random();
         private static readonly object syncLock = new object();
