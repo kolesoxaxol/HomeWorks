@@ -18,7 +18,7 @@ namespace PlayersAndInteraction.Players
 
             bool correctAnswer = _numbers[0] == answer;
 
-            if(!correctAnswer)
+            if (!correctAnswer)
             {
                 this._lastGuess = _numbers[0];
 

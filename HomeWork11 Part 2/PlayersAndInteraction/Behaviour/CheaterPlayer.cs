@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlayersAndInteraction.Behaviour
 {
-    class CheaterPlayer :BasePlayer, IGuessable
+    class CheaterPlayer : BasePlayer, IGuessable
     {
         public int MakeGuess(int answer, List<int> otherGuesses)
         {

@@ -120,10 +120,10 @@ namespace PlayersAndInteraction.Game
                 }
             }
 
-            if(noWinner)
+            if (noWinner)
             {
                 List<int> allBestGuess = new List<int>();
-                foreach(Player player in _listOfPlayers)
+                foreach (Player player in _listOfPlayers)
                 {
                     int bestGuess = player.FindBestGuess(_winNumber);
                     allBestGuess.Add(bestGuess);
@@ -147,7 +147,7 @@ namespace PlayersAndInteraction.Game
             _minValue = 0;
             _maxValue = 0;
             _winNumber = 0;
-            
+
         }
     }
 }
