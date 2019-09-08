@@ -9,25 +9,22 @@ namespace PlayersAndInteraction.Game
 {
     public static class Play
     {
-        private static List<IGuessable> _behaviour;
-
-        private static Dictionary<int, string> _typeOfPlayers;
-
-        private static List<Player> _listOfPlayers;
-
-        private static List<int> _allGuesses;
-
         private static int _minValue;
-
         private static int _maxValue;
-
         private static int _winNumber;
 
         private static int _amountOfPlayers;
+        private static List<Player> _listOfPlayers;
+
+        private static Dictionary<int, string> _typeOfPlayers;
+        private static List<IGuessable> _behaviour;
+
+        private static List<int> _allGuesses;
 
         static Play()
         {
             _listOfPlayers = new List<Player>();
+
             _allGuesses = new List<int>();
 
             _behaviour = new List<IGuessable>();
@@ -49,7 +46,7 @@ namespace PlayersAndInteraction.Game
             };
 
         }
-
+        //I don't have to kepp track of ALL guesses made in the game, just last _amountOfPlayers guesses that are relevant
         private static void AddToGuessList(int guess)
         {
             bool guessListFull = _allGuesses.Count == _amountOfPlayers;
@@ -90,6 +87,9 @@ namespace PlayersAndInteraction.Game
                 _listOfPlayers.Add(player);
             }
 
+        }
+        public static void PlayGame()
+        {
             Console.WriteLine("Select minimum value of weight.");
 
             _minValue = int.Parse(Console.ReadLine());
@@ -103,9 +103,6 @@ namespace PlayersAndInteraction.Game
                 player.Behaviour.GenerateList(_minValue, _maxValue);
             }
 
-        }
-        public static void PlayGame()
-        {
             _winNumber = RandomGenerator.RandomGenerator.RandomNumber(_minValue, _maxValue);
 
             Console.WriteLine("Select amount of total tries for all players.");
@@ -125,6 +122,7 @@ namespace PlayersAndInteraction.Game
                     AddToGuessList(guess);
 
                     bool win = guess == _winNumber;
+
                     if (win)
                     {
                         Console.WriteLine($"Player {player.Name} wins!");
@@ -142,6 +140,7 @@ namespace PlayersAndInteraction.Game
             if (noWinner)
             {
                 List<int> allBestGuess = new List<int>();
+
                 foreach (Player player in _listOfPlayers)
                 {
                     int bestGuess = player.Behaviour.BestGuess;
@@ -162,10 +161,6 @@ namespace PlayersAndInteraction.Game
         {
             _listOfPlayers = new List<Player>();
             _allGuesses = new List<int>();
-            _amountOfPlayers = 0;
-            _minValue = 0;
-            _maxValue = 0;
-            _winNumber = 0;
 
         }
 

@@ -8,13 +8,15 @@ namespace PlayersAndInteraction.Behaviour
 {
     abstract class BasePlayer
     {
+        //There I store all numbers a player has to guess among.
         public List<int> _numbers;
 
+        //will be used to reduce _numbers pool for specific types of behaviour
         public int _lastGuess;
 
         public BasePlayer()
         {
-            _lastGuess = Int32.MinValue;
+            //I have to set values for BestGuess upon player creation as it will be used when check for better guess will be done for first time.
             this.BestGuess = Int32.MaxValue;
         }
 

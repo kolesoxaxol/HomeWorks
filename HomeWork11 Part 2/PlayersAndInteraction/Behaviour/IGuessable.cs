@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PlayersAndInteraction.Behaviour
 {
@@ -10,6 +6,7 @@ namespace PlayersAndInteraction.Behaviour
     {
         int BestGuess { get; set; }
 
+        //other Guesses will contain all players' last guess by the time MakeGuess is called.
         int MakeGuess(int answer, List<int> otherGuesses);
 
         void GenerateList(int minValue, int MaxValue);
