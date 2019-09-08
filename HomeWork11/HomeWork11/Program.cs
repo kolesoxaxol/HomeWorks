@@ -18,9 +18,6 @@ namespace HomeWork11
                 PlayersAndInteraction.Game.Play.ClearGame();
             }
 
-            Console.ReadKey();
-
-
         }
     }
 }

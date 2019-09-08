@@ -21,7 +21,7 @@ namespace PlayersAndInteraction.Behaviour
 
             bool betterGuess = Math.Abs(answer - this._lastGuess) < this.BestGuess;
 
-            if(betterGuess)
+            if (betterGuess)
             {
                 this.BestGuess = Math.Abs(answer - this._lastGuess);
             }

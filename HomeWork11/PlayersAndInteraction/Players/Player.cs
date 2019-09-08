@@ -59,7 +59,7 @@ namespace PlayersAndInteraction.Players
 
                 bool betterResult = difference < bestGuess;
 
-                if(betterResult)
+                if (betterResult)
                 {
                     bestGuess = difference;
                 }

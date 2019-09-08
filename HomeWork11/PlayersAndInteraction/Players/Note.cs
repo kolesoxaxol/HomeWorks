@@ -17,7 +17,7 @@ namespace PlayersAndInteraction.Players
 
             int count = this._numbers.Count;
 
-            int indexGuess = RandomGenerator.RandomGenerator.RandomNumber(0,count);
+            int indexGuess = RandomGenerator.RandomGenerator.RandomNumber(0, count);
 
             this._lastGuess = this._numbers[indexGuess];
 
